@@ -1,5 +1,6 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { React } from 'react';
 import IndexScreen from './src/screens/IndexScreen';
 
 const navigator = createStackNavigator({
@@ -11,4 +12,11 @@ const navigator = createStackNavigator({
   }
 });
 
-export default createAppContainer(navigator)
+//export default createAppContainer(navigator) //wrap 1. returning JUST this component, but we need to wrap it
+
+const App = createAppContainer(navigator);
+
+//wrap 2.  wrap inside our own custom component
+export default () => {
+  return <App />
+};
