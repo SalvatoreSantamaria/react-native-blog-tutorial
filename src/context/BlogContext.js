@@ -9,16 +9,14 @@ const BlogContext = React.createContext(); //think of this as a direct line pipe
   export const BlogProvider = ({ children }) => {
     const [blogPosts, setterBlogPosts] = useState([])
 
-
+    //Context 5: add value prop and callback prop
     const addBlogPost = () => {
-      setterBlogPosts([...blogPosts], { title: `Blog Post #${blogPosts.length + 1}`}) //create a brand new array from scratch, don't change existing 'blogPosts', and use ... to add in current data. Then add the new in the object
+      setterBlogPosts([...blogPosts, { title: `Blog Post #${blogPosts.length + 1}`}]) //create a brand new array from scratch, don't change existing 'blogPosts', and use ... to add in current data. Then add the new in the object
     }
-
-    //Context 5: add value prop
-    const blogPosts = [
-      { title: 'Post 1'},
-      { title: 'Post 2'},
-    ]
+    // const blogPosts = [
+    //   { title: 'Post 1'},
+    //   { title: 'Post 2'},
+    // ]
     // pass in object with data and addBlogPost callback function 
     return <BlogContext.Provider value={{ data: blogPosts, addBlogPost: addBlogPost}}>{children}</BlogContext.Provider>; // key and value are indentical for addBlogPost, so we could condense to one value like { data: blogPosts, addBlogPost}
   };
