@@ -1,6 +1,6 @@
-// Too complicated to write out explanation, see https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707490#questions 137: Automating Context Creation for explanation
+// Too complicated to write out explanation, see https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707490#questions 138: More Automatic Context Creation for explanation
+// This ^ is what we have to do if we don't use Redux!!
 
-import React, { useReducer } from 'react'; //useReducer 1
 import createDataContext from './createDataContext';
 
 const blogReducer = (state, action) => {
@@ -12,8 +12,10 @@ const blogReducer = (state, action) => {
   }
 }
 
-const addBlogPost = () => {
-  dispatch({type: 'add_blogpost'});
+const addBlogPost = (dispatch) => {
+  return () => {
+    dispatch({type: 'add_blogpost'});
+  }
 }
 
 export const { Context, Provider } = createDataContext(blogReducer, { addBlogPost}, [])

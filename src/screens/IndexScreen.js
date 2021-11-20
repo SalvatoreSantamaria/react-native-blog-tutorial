@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'; //Context 3: import the useContext hook from react
 import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
-import BlogContext from '../context/BlogContext'; //Context 4: import the context function
+import { Context } from '../context/BlogContext'; //Context 4: import the context function
 
 
 const IndexScreen = () => {
-  const { data, addBlogPost } = useContext(BlogContext) //Context 6: get the value prop and callback with destructuring
+  const { state, addBlogPost } = useContext(Context) //Context 6: get the value prop and callback with destructuring
   return (
     <View>
       <Text>Index Screen</Text>
@@ -13,7 +13,7 @@ const IndexScreen = () => {
       {/* Context 7: Output the value prop- will only output if its a string, number, not an object */}
       {/* <Text>Using Context, the value is: {value1}</Text> */}
       <FlatList 
-        data={data}
+        data={state}
         keyExtractor={(blogPost) => blogPost.title}
         renderItem={({item}) => {
           return <Text>{item.title}</Text>
