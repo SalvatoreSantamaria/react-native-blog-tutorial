@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'; //Context 3: import the useContext hook from react
-import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native';
 import { Context } from '../context/BlogContext'; //Context 4: import the context function
 import { Feather } from '@expo/vector-icons';
 
@@ -19,7 +19,9 @@ const IndexScreen = () => {
         renderItem={({item}) => {
           return <View style={styles.row}>
             <Text style={styles.title}>{item.title}
-              <Feather name='trash' style={styles.icon}/>
+              <TouchableOpacity onPress={() => console.log(item.id)}>
+                <Feather name='trash' style={styles.icon}/>
+              </TouchableOpacity>
             </Text>
           </View>
         }}
