@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'reac
 import { Context } from '../context/BlogContext'; //Context 4: import the context function
 import { Feather } from '@expo/vector-icons';
 
-
-const IndexScreen = () => {
+// Navigation 2: destructure props.navigation 
+const IndexScreen = ({ navigation }) => {
   const { state, addBlogPost, deleteBlogPost } = useContext(Context) //Context 6: get the value prop and callback with destructuring
   return (
     <View>
@@ -17,13 +17,18 @@ const IndexScreen = () => {
         data={state}
         keyExtractor={(blogPost) => blogPost.title}
         renderItem={({item}) => {
-          return <View style={styles.row}>
-            <Text style={styles.title}>{item.title}
-              <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
-                <Feather name='trash' style={styles.icon}/>
-              </TouchableOpacity>
-            </Text>
-          </View>
+          return (
+            // Navigation 3: call navigation with the navigate prop and pass in an optional object so the thing we navigate to can access
+            <TouchableOpacity onPress={() => navigation.navigate('Show', { id: item.id})}> 
+              <View style={styles.row}>
+                <Text style={styles.title}>{item.title}
+                  <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                    <Feather name='trash' style={styles.icon}/>
+                  </TouchableOpacity>
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )
         }}
       />
     </View>
