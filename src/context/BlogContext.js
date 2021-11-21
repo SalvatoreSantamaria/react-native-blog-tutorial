@@ -12,7 +12,8 @@ const blogReducer = (state, action) => {
         ...state, 
         {
           id: Math.floor(Math.random() * 99999), 
-          title: `Blog Post #${state.length+1}`
+          title: action.payload.title,
+          content: action.payload.content
         }
       ];
     default: 
@@ -21,8 +22,9 @@ const blogReducer = (state, action) => {
 }
 
 const addBlogPost = (dispatch) => {
-  return () => {
-    dispatch({type: 'add_blogpost'});
+  // accept title and content arguments from the component
+  return (title, content) => {
+    dispatch({type: 'add_blogpost', payload: {title: title, content: content}}); //these can be condensed as just {title, content} because the key value pairs are identical
   }
 }
 
