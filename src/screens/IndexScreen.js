@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 
 
 const IndexScreen = () => {
-  const { state, addBlogPost } = useContext(Context) //Context 6: get the value prop and callback with destructuring
+  const { state, addBlogPost, deleteBlogPost } = useContext(Context) //Context 6: get the value prop and callback with destructuring
   return (
     <View>
       <Text>Index Screen</Text>
@@ -19,7 +19,7 @@ const IndexScreen = () => {
         renderItem={({item}) => {
           return <View style={styles.row}>
             <Text style={styles.title}>{item.title}
-              <TouchableOpacity onPress={() => console.log(item.id)}>
+              <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
                 <Feather name='trash' style={styles.icon}/>
               </TouchableOpacity>
             </Text>
