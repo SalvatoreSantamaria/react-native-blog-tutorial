@@ -23,8 +23,9 @@ const blogReducer = (state, action) => {
 
 const addBlogPost = (dispatch) => {
   // accept title and content arguments from the component
-  return (title, content) => {
+  return (title, content, callback) => {
     dispatch({type: 'add_blogpost', payload: {title: title, content: content}}); //these can be condensed as just {title, content} because the key value pairs are identical
+    callback();
   }
 }
 

@@ -10,7 +10,7 @@ const IndexScreen = ({ navigation }) => {
     <View>
       <Text>Index Screen</Text>
       {/* can also pass as onPress={addBlogPost} with no parens! */}
-      <Button title='Add Post' onPress={() => addBlogPost()}/>
+      {/* <Button title='Add Post' onPress={() => addBlogPost()}/> */}
       {/* Context 7: Output the value prop- will only output if its a string, number, not an object */}
       {/* <Text>Using Context, the value is: {value1}</Text> */}
       <FlatList 
